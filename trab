@@ -1,0 +1,67 @@
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+#include <locale.h>
+
+using namespace std;
+
+struct Produto {
+    int codigo;
+    char nome[50];
+    float preco;
+    int estoque;
+};
+
+const int totalprod = 10;
+struct Produto prod[totalProd];
+int indice = 0;
+
+void cabecalho(char texto[]){
+    system("cls");
+    cout << "===== Programa desenvolvido por Pedro e Murilo =====\n";
+    cout << "===== " << texto << "=====\n";
+}
+
+void cadastrar () {
+    int codigo;
+    int vezes = 0;
+    cabecalho("Cadastro de Produto");
+    cout << "Cadastrando o produto no indice " << indice << "\n";
+    do {
+        vezes = 0;
+        cout << "Digite o código: ";
+        cin >> codigo;
+        for(int i = 0; i<indice; i++){
+            if(prod[i].codigo == codigo){
+                vezes++;
+            }
+    
+        }
+        if (vezes > 0){
+            cout << "Código inválido\n";
+        }
+    }while(vezes > 0);
+    
+    prod[indice].codigo = codigo;
+    cout << "Digite o Nome: ";
+    cin >> prod[indice].nome;
+    cout << "Digite o Preço: ";
+    cin >> prod[indice].preco;
+    cout << "Digite o Estoque: ";
+    cin >> prod[indice].estoque;
+}
+
+void menu(){
+    cabecalho("Menu de opções");
+    cout << "1 - Imprimir dados do produto\n";
+    cout << "2 - Exibir o estoque por Código\n";
+    cout << "3 - Imprimir nome dos desenvolvedores\n";
+    cout << "0 - Sair\n";
+}
+
+void imprimir(){
+        cabecalho("Impressão dos produtos em tela!!");
+        for(int i = 0; i < totalProd; i++){
+            cout << prod[i].codigo << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+        }
+}
